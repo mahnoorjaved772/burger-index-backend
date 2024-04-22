@@ -1,0 +1,32 @@
+export declare class HistoryInput {
+    id: string;
+    type?: string;
+    neighbourhood?: string;
+    phoneNumberOne?: string;
+    phoneNumberTwo?: string;
+    cityCode?: string;
+    imageUrl?: string;
+    cityName?: string;
+    rating?: number;
+    platformStoreRating?: string;
+    totalRating?: string;
+    platform?: string;
+    platformStoreId?: string;
+    brand_id?: string;
+    platformStoreName?: string;
+    platformStoreDescription?: string;
+    platformStoreAddress?: string;
+    platformStoreUrl?: string;
+    platformProductId?: string;
+    name?: string;
+    description?: string;
+    isAvailable?: boolean;
+    isPopular?: boolean;
+    isSoldOut?: boolean;
+    currency?: string;
+    price?: number;
+    discountedPrice?: number;
+    discountAmount?: number;
+    priceDiscountPercent?: number;
+    scrapeDate?: string;
+}

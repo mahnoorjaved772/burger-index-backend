@@ -1,0 +1,296 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Product {
+  platformProductId: String!
+  name: String!
+  platform: String
+  description: String
+  imageUrl: String
+  isAvailable: Boolean!
+  isPopular: Boolean!
+  isSoldOut: Boolean!
+  currency: String
+  price: Float!
+  discountedPrice: Float
+  providerId: String
+  discountAmount: Float
+  priceDiscountPercent: Float
+  provider: Provider
+}
+
+type RatingInfo {
+  id: String!
+  platformStoreRating: Float!
+  rating: Int!
+  brand_id: String
+  totalRating: Int!
+  detailsLabel: String
+  totalRatingLabel: String
+  providerId: Provider!
+}
+
+type Provider {
+  brand_id: String!
+  platformStoreDescription: String
+  neighbourhood: String
+  scrape_date: String!
+  phoneNumberOne: String
+  phoneNumberTwo: String
+  type: String!
+  cityCode: Float!
+  imageUrl: String!
+  cityName: String!
+  platformStoreId: String
+  categoryTags: [String!]
+  platform: Platform!
+  products: [Product!]
+  ratingInfo: [RatingInfo!]
+}
+
+type Platform {
+  platformStoreId: String!
+  platform: String!
+  platformStoreName: String!
+  platformStoreDescription: String
+  platformStoreAddress: String
+  platformStoreUrl: String
+  providersList: [Provider!]
+}
+
+type ProductSearchResults {
+  items: [Product!]!
+  totalCount: Int!
+  page: Int!
+  pageSize: Int!
+}
+
+type ProductPagination {
+  items: [Product!]!
+  totalCount: Int!
+  page: Int!
+  pageSize: Int!
+}
+
+type DeliveryInfo {
+  deliveryInfoId: String!
+  supportedStrategy: String!
+  platform: String!
+  serviceFee: Int!
+  highestMinBasketSurcharge: Int
+  reference: String
+  brand_id: String
+}
+
+type History {
+  id: String
+  type: String
+  neighbourhood: String
+  phoneNumberOne: String
+  phoneNumberTwo: String
+  cityCode: String
+  imageUrl: String
+  cityName: String
+  rating: Int
+  platformStoreRating: String
+  totalRating: String
+  platform: String
+  platformStoreId: String
+  brand_id: String
+  platformStoreName: String
+  platformStoreDescription: String
+  platformStoreAddress: String
+  platformStoreUrl: String
+  platformProductId: String
+  name: String
+  description: String
+  isAvailable: Boolean
+  isPopular: Boolean
+  isSoldOut: Boolean
+  currency: String
+  price: Float
+  discountedPrice: Float
+  discountAmount: Float
+  priceDiscountPercent: Float
+  scrapeDate: String
+}
+
+type HistoryPagination {
+  items: [History!]!
+  totalCount: Int!
+  page: Int!
+  pageSize: Int!
+}
+
+type Query {
+  platforms: [Platform!]!
+  platform(platformStoreId: String!): Platform
+  providers: [Provider!]!
+  provider(brand_id: String!): Provider!
+  allProducts(page: Int! = 1, pageSize: Int! = 10): ProductPagination!
+  product(platformProductId: String!): Product
+  searchProducts(query: String!, page: Int! = 1, pageSize: Int! = 10): ProductSearchResults!
+  deliveryInfo(id: String!): DeliveryInfo
+  ratingInfo(id: String!): RatingInfo!
+  findAllHistory(skip: Int, take: Int): [History!]!
+  findByPlatformProductId(platformProductId: String!, page: Int! = 1, pageSize: Int! = 10): HistoryPagination!
+}
+
+type Mutation {
+  createPlatform(createPlatformInput: CreatePlatformInput!): Platform!
+  updatePlatform(platformStoreId: String!, updatePlatformInput: UpdatePlatformInput!): Platform!
+  createProvider(createProviderInput: CreateProviderInput!): Provider!
+  updateProvider(updateProviderInput: UpdateProviderInput!): Provider!
+  createProduct(createProductInput: CreateProductInput!): Product!
+  updateProduct(platformProductId: String!, updateProductInput: UpdateProductInput!): Product!
+  createDeliveryInfo(createDeliveryInfoInput: CreateDeliveryInfoInput!): DeliveryInfo!
+  createRatingInfo(createRatingInfoInput: CreateRatingInfoInput!): RatingInfo!
+  updateRatingInfo(updateRatingInfoInput: UpdateRatingInfoInput!): RatingInfo!
+  removeRatingInfo(id: String!): RatingInfo!
+  createHistory(historyInput: HistoryInput!): History!
+}
+
+input CreatePlatformInput {
+  platform: String!
+  platformStoreId: String!
+  platformStoreName: String!
+  platformStoreDescription: String
+  platformStoreUrl: String
+  platformStoreAddress: String
+}
+
+input UpdatePlatformInput {
+  platformStoreId: ID
+  platform: String
+  platformStoreName: String
+  platformStoreDescription: String
+  platformStoreAddress: String
+  platformStoreUrl: String
+}
+
+input CreateProviderInput {
+  brand_id: String!
+  platformStoreDescription: String
+  neighbourhood: String
+  phoneNumberOne: String!
+  phoneNumberTwo: String
+  type: String!
+  cityCode: Float!
+  imageUrl: String!
+  platformStoreId: String
+  cityName: String!
+  scrape_date: String!
+  categoryTags: [String!]
+}
+
+input UpdateProviderInput {
+  brand_id: ID
+  platformStoreDescription: String
+  neighbourhood: String
+  phoneNumberOne: String
+  phoneNumberTwo: String
+  type: String
+  cityCode: Float
+  imageUrl: String
+  cityName: String
+  scrape_date: String
+  platformStoreId: String
+  categoryTags: [String!]
+}
+
+input CreateProductInput {
+  platformProductId: String!
+  platform: String
+  name: String!
+  description: String
+  imageUrl: String
+  isAvailable: Boolean
+  isPopular: Boolean
+  isSoldOut: Boolean
+  currency: String
+  price: Float!
+  discountedPrice: Float
+  discountAmount: Float
+  priceDiscountPercent: Float
+  providerId: String
+}
+
+input UpdateProductInput {
+  id: String
+  platformProductId: String
+  name: String
+  description: String
+  imageUrl: String
+  isAvailable: Boolean
+  isPopular: Boolean
+  providerId: String
+  isSoldOut: Boolean
+  currency: String
+  price: Float
+  discountedPrice: Float
+  discountAmount: Float
+  priceDiscountPercent: Float
+}
+
+input CreateDeliveryInfoInput {
+  deliveryInfoId: String
+  supportedStrategy: String
+  platform: String!
+  serviceFee: Int!
+  highestMinBasketSurcharge: Int
+  brand_id: String
+  reference: String
+}
+
+input CreateRatingInfoInput {
+  platformStoreRating: Float!
+  rating: Int
+  totalRating: Int
+  detailsLabel: String
+  totalRatingLabel: String
+  brand_id: String!
+}
+
+input UpdateRatingInfoInput {
+  id: String
+  platformStoreRating: Float
+  rating: Int
+  totalRating: Int
+  detailsLabel: String
+  totalRatingLabel: String
+  brand_id: String
+}
+
+input HistoryInput {
+  id: String
+  type: String
+  neighbourhood: String
+  phoneNumberOne: String
+  phoneNumberTwo: String
+  cityCode: String
+  imageUrl: String
+  cityName: String
+  rating: Int
+  platformStoreRating: String
+  totalRating: String
+  platform: String
+  platformStoreId: String
+  brand_id: String
+  platformStoreName: String
+  platformStoreDescription: String
+  platformStoreAddress: String
+  platformStoreUrl: String
+  platformProductId: String
+  name: String
+  description: String
+  isAvailable: Boolean
+  isPopular: Boolean
+  isSoldOut: Boolean
+  currency: String
+  price: Float
+  discountedPrice: Float
+  discountAmount: Float
+  priceDiscountPercent: Float
+  scrapeDate: String
+}
