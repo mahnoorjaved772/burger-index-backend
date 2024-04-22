@@ -17,15 +17,16 @@ import { HistoryModule } from './modules/history/history.module';
 
 @Module({
   imports: [
+    //You can create env file or past directly your creds in order to run code
     TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'root',
-      database: 'burger_index9',
-      entities: ['dist/**/*.entity.{ts,js}'],
-      synchronize: true,
+    type: process.env.DB_TYPE,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
+    entities: ['dist/**/*.entity.{ts,js}'],
+  synchronize: true,
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
